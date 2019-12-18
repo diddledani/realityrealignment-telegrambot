@@ -24,6 +24,7 @@ RUN npm run build && npm prune --production
 FROM node:10.13-alpine
 ENV NODE_ENV production
 WORKDIR /usr/src/app
+RUN apk add --no-cache libssl1.0 libcrypto1.0
 COPY --from=nodebuild /app .
 COPY --from=tdjson /app/tdlib/lib/libtdjson.so .
 
