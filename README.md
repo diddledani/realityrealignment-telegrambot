@@ -43,4 +43,4 @@ npm run start
 
 This bot is created by Daniel Llewellyn (diddledan).
 
-The icon is timeline by shashank sing from [the Noun Project](https://thenounproject.com/).
+The icon is timeline by shashank singh from [the Noun Project](https://thenounproject.com/).
