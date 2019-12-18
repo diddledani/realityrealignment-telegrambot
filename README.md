@@ -4,7 +4,7 @@
   Reality Realignment Bot
 </h1>
 
-Are you fed up with Telegram messages disappearing because users are meddling with Wibbly Wobbly Timey Wimey delete buttons? This bot will monitor the universe timescape and notify the channel. When it detects ripples in the timeline causing reality to fold in upon us, the bot will announce that the course of historical events has been altered.
+Are you fed up with Telegram messages disappearing because users are meddling with Wibbly Wobbly Timey Wimey delete buttons? This bot will monitor the universe timescape for modifications and time travelling. When it detects ripples in the timeline causing reality to fold in upon us, the bot will announce that the course of historical events has been altered.
 
 ## Running
 
