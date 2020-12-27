@@ -1,8 +1,14 @@
-FROM node:10.13-alpine AS tdjson
+FROM node:14 AS tdjson
 WORKDIR /app
-RUN apk add --no-cache alpine-sdk linux-headers git zlib-dev openssl-dev gperf php php-ctype cmake
-RUN git clone https://github.com/tdlib/td.git . \
-    && rm -rf build \
+# RUN apk add --no-cache alpine-sdk linux-headers git zlib-dev openssl-dev gperf php php-ctype cmake
+RUN apt-get update && apt-get install -yqq \
+    build-essential \
+    cmake \
+    git \
+    gperf \
+    php
+RUN git clone -b v1.7.0 https://github.com/tdlib/td.git .
+RUN rm -rf build \
     && mkdir build \
     && cd build \
     && export CXXFLAGS="" \
@@ -13,18 +19,19 @@ RUN git clone https://github.com/tdlib/td.git . \
     && cd build \
     && cmake --build . --target install
 
-FROM node:10.13-alpine as nodebuild
+FROM node:14 as nodebuild
 WORKDIR /app
-RUN apk add --no-cache python alpine-sdk
+# RUN apk add --no-cache python3 alpine-sdk libffi-dev
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm ci
+RUN npm install
 COPY . .
 RUN npm run build && npm prune --production
 
-FROM node:10.13-alpine
+FROM node:14
 ENV NODE_ENV production
 WORKDIR /usr/src/app
-RUN apk add --no-cache libssl1.0 libcrypto1.0
+# RUN apk add --no-cache libssl1.1 libcrypto1.1
+RUN apt-get update && apt-get install -yqq libssl1.1 && apt-get clean && rm -rf /var/apt
 COPY --from=nodebuild /app .
 COPY --from=tdjson /app/tdlib/lib/libtdjson.so .
 

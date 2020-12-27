@@ -12,7 +12,10 @@ airgram.use(new Auth({
 airgram.on('updateDeleteMessages', async ({update}) => {
     airgram.api.sendMessage({
         chatId: update.chatId,
-        disableNotification: true,
+        options: {
+            _: 'messageSendOptions',
+            disableNotification: true,
+        },
         inputMessageContent: {
             _: 'inputMessageText',
             text: {
