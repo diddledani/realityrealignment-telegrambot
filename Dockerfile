@@ -31,7 +31,11 @@ FROM node:14
 ENV NODE_ENV production
 WORKDIR /usr/src/app
 # RUN apk add --no-cache libssl1.1 libcrypto1.1
-RUN apt-get update && apt-get install -yqq libssl1.1 && apt-get clean && rm -rf /var/apt
+RUN apt-get update && \
+    apt-get dist-upgrade -yqq && \
+    apt-get install -yqq libssl1.1 && \
+    apt-get clean && \
+    rm -rf /var/apt
 COPY --from=nodebuild /app .
 COPY --from=tdjson /app/tdlib/lib/libtdjson.so .
 
