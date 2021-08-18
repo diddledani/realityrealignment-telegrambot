@@ -9,7 +9,11 @@ airgram.use(new Auth({
     token: process.env.BOT_TOKEN || '',
 }))
 
-airgram.on('updateDeleteMessages', async ({update}) => {
+let debounceFlag = false;
+airgram.on('updateDeleteMessages', ({update}) => {
+    if (debounceFlag) return
+    debounceFlag = true
+    setTimeout(() => debounceFlag = false, 5000)
     airgram.api.sendMessage({
         chatId: update.chatId,
         options: {
