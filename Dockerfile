@@ -1,4 +1,4 @@
-FROM node:16.14.2 AS tdjson
+FROM node:16 AS tdjson
 WORKDIR /app
 # RUN apk add --no-cache alpine-sdk linux-headers git zlib-dev openssl-dev gperf php php-ctype cmake
 RUN apt-get update && apt-get install -yqq \
@@ -19,7 +19,7 @@ RUN rm -rf build \
     && cd build \
     && cmake --build . --target install
 
-FROM node:16.14.2 as nodebuild
+FROM node:16 as nodebuild
 WORKDIR /app
 # RUN apk add --no-cache python3 alpine-sdk libffi-dev
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
@@ -27,7 +27,7 @@ RUN npm install
 COPY . .
 RUN npm run build && npm prune --production
 
-FROM node:16.14.2
+FROM node:16
 ENV NODE_ENV production
 WORKDIR /usr/src/app
 # RUN apk add --no-cache libssl1.1 libcrypto1.1
