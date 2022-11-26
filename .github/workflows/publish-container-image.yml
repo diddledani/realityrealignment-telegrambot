@@ -33,7 +33,7 @@ jobs:
           type=semver,pattern={{major}}.{{minor}}
         labels: |
           org.opencontainers.image.title=Reality Realignment Telegram Bot
-          org.opencontainers.image.description=Telegram Bot to detect edits and deletes in group chats on Telegram and notified people about the realignment of reality that occurred.
+          org.opencontainers.image.description=Bot that announces reality distortion due to message deletions/edits in Telegram group chats
           org.opencontainers.image.authors=https://diddledani.com/
     - name: Push to Docker Hub
       uses: docker/build-push-action@v3
