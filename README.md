@@ -23,13 +23,13 @@ Create a new bot via [The BotFather](https://t.me/BotFather) on Telegram. In the
 #### Docker
 
 ```shell
-docker run -e API_ID=$API_ID -e API_HASH=$API_HASH -e BOT_TOKEN=$BOT_TOKEN diddledan/realityrealignment-telegrambot:latest
+docker run -e API_ID=$API_ID -e API_HASH=$API_HASH -e BOT_TOKEN=$BOT_TOKEN diddledani/realityrealignment-telegrambot:latest
 ```
 
 #### Source-code checkout
 
 ```shell
-git clone https://github.com/diddledan/realityrealignment-telegrambot.git
+git clone https://github.com/diddledani/realityrealignment-telegrambot.git
 cd realityrealignment-telegrambot
 npm install
 npm run build
@@ -41,6 +41,6 @@ npm run start
 
 ## Credits
 
-This bot is created by Daniel Llewellyn (diddledan).
+This bot is created by Dani Llewellyn (diddledani).
 
 The icon is timeline by shashank singh from [the Noun Project](https://thenounproject.com/).

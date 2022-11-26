@@ -1,6 +1,7 @@
 **/*.js
 **/.classpath
 **/.env
+**/.envrc
 **/.project
 **/.settings
 **/.toolstarget

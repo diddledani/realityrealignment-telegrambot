@@ -1,4 +1,4 @@
-FROM node:16 AS tdjson
+FROM node:18-bullseye AS tdjson
 WORKDIR /app
 # RUN apk add --no-cache alpine-sdk linux-headers git zlib-dev openssl-dev gperf php php-ctype cmake
 RUN apt-get update && apt-get install -yqq \
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -yqq \
     git \
     gperf \
     php
-RUN git clone -b v1.7.0 https://github.com/tdlib/td.git .
+RUN git clone -b v1.8.0 https://github.com/tdlib/td.git .
 RUN rm -rf build \
     && mkdir build \
     && cd build \
@@ -19,15 +19,16 @@ RUN rm -rf build \
     && cd build \
     && cmake --build . --target install
 
-FROM node:16 as nodebuild
+FROM node:18-bullseye as nodebuild
 WORKDIR /app
 # RUN apk add --no-cache python3 alpine-sdk libffi-dev
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install
 COPY . .
+ENV NODE_ENV production
 RUN npm run build && npm prune --production
 
-FROM node:16
+FROM node:18-bullseye
 ENV NODE_ENV production
 WORKDIR /usr/src/app
 # RUN apk add --no-cache libssl1.1 libcrypto1.1
