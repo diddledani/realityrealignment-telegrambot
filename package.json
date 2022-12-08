@@ -13,7 +13,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "airgram": "^4.1.1"
+    "airgram": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
